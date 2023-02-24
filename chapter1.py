@@ -26,8 +26,15 @@ class Chapter1:
                 return False
         print("e work seh")
         return True
-        
+
+    def URLify(self, STR: str) -> str:
+        if type(STR) != str:
+            print("only string is allowed")
+        else:
+            STR = STR.replace(" ", "%20")    
+            print(STR)
         
 runam = Chapter1()
 runam.oneOne('456')
 runam.permutation("dadad", "adadf")
+runam.URLify("oloba UK")
