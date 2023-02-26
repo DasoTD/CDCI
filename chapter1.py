@@ -103,9 +103,9 @@ class Chapter1:
 
 
 runam = Chapter1()
-# runam.oneOne('4456')
-# runam.permutation("dadad", "adadf")
-# runam.URLify("oloba, data UK")
-# runam.SinglePermutation("data")
-# runam.palindrome("madadm")
+runam.oneOne('4456')
+runam.permutation("dadad", "adadf")
+runam.URLify("oloba, data UK")
+runam.SinglePermutation("data")
+runam.palindrome("madadm")
 runam.PalidromePermutation("")
