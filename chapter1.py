@@ -34,10 +34,29 @@ class Chapter1:
             STR = STR.replace(" ", "%20")    
             print(STR)
     
-    def PalidromePermutation(self):
+    def PalidromePermutation(self, string: str) -> bool:
         # palindrome is a word that read same backward and forward e.g madam, lol, daad
         # permutation is the rearrangement of a set
-        pass
+        global output 
+        if len(string) <= 0:
+            print("".join(string), "enter value na")
+            return False
+        import re
+        s = re.sub(r'[^0-9a-zA-Z]', '', string).lower()
+        
+        left = 0
+        right = len(string) -1
+
+        while left < right:
+            if s[left] != s[right]:
+                output = False
+                print("e no work")
+                return output
+            left +=1
+            right -=1
+        print("e work")
+        output = True
+        print(output)
 
     def SinglePermutation(self, string: str, i =0 ):
         if i == len(string):   	 
@@ -65,6 +84,7 @@ class Chapter1:
 
         while left < right:
             if s[left] != s[right]:
+                print("e no work")
                 return False
             left +=1
             right -=1
@@ -76,5 +96,7 @@ runam = Chapter1()
 # runam.oneOne('4456')
 # runam.permutation("dadad", "adadf")
 # runam.URLify("oloba, data UK")
-runam.SinglePermutation("data")
-runam.palindrome("madam")
+# runam.SinglePermutati
+# on("data")
+# runam.palindrome("madadm")
+runam.PalidromePermutation("madam")
