@@ -99,13 +99,41 @@ class Chapter1:
             left +=1
             right -=1
         print("e work")
-        return True
+        return 
+    
+    def OneorZero(self, str1: str, str2: str)-> bool:
+        # result = str2 not in str1
+        # print(result)
+        strA = [c for c in str1]
+        print(strA)
+        stra = {*strA}
+        print(stra)
+        s1 = input()
+        s2 = input()
+        count = 0
+        for i in range(0,len(s1)):
+            if(s1[i] == s2[0] and s1[i+1] == s2[1]):
+                count = count+1
+        print(count)
+        # strB = [b for b in str2]
+        # if strB not in strA >1 :
+        #     print("e no work")
+        # for i in range(len(str1), len(str2)):
+        #     if str2[i] not in str1[i] > 1:
+        #         print(" e no work")
+        #         return False
+        #     if str2[i] not in str1[i] <= 1:
+        #         print(" e work")
+        #         return True
+            
+        
 
 
 runam = Chapter1()
-runam.oneOne('4456')
-runam.permutation("dadad", "adadf")
-runam.URLify("oloba, data UK")
-runam.SinglePermutation("data")
-runam.palindrome("madadm")
-runam.PalidromePermutation("")
+# runam.oneOne('4456')
+# runam.permutation("dadad", "adadf")
+# runam.URLify("oloba, data UK")
+# runam.SinglePermutation("data")
+# runam.palindrome("madadm")
+# runam.PalidromePermutation("")
+runam.OneorZero("baba", "baba")
