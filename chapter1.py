@@ -158,6 +158,17 @@ class Chapter1:
                 index2 += 1
                 index2 += 1
         return  True
+    
+    def specialMultiply(self, string:str)-> str:
+        result = []
+        for idx, char in enumerate(string):
+            print(idx, char)
+            if idx == 0:
+                result.append(char )
+            else:
+                result.append(char * int(idx +1))
+
+        print("".join(result))
 
 
         
@@ -170,4 +181,5 @@ runam = Chapter1()
 # runam.SinglePermutation("data")
 # runam.palindrome("madadm")
 # runam.PalidromePermutation("")
-runam.OneorZero("baba", "baba")
+# runam.OneorZero("baba", "baba")
+runam.specialMultiply("abcd")
