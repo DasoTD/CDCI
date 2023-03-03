@@ -1,4 +1,6 @@
 class Chapter1:
+    def __init__(self):
+        self = self
     def oneOne(self, val : str) -> str :
         res = ""
         for i in val:
@@ -125,7 +127,39 @@ class Chapter1:
         #     if str2[i] not in str1[i] <= 1:
         #         print(" e work")
         #         return True
-            
+    def oneEditWay(self, str1: str, str2:str)->bool:
+        if(len(str1) == len(str2)):
+            pass
+        elif(len(str1) +1 ==  len(str2) ):
+            pass
+        elif(len(str1) -1  == len(str2)):
+            pass
+
+        return False
+    def oneEditRepalce(self, str1: str, str2:str)->bool:
+        foundDifference = False
+
+        for i in range(len(str1)):
+            if(str1[i] != str2[i]):
+                if(foundDifference):
+                    return False
+                foundDifference = True
+        return True
+    
+    def oneEditInsert(self, str1: str, str2:str)->bool:
+        index1 =0
+        index2 =0
+        while(index2 < len(str2) and index1 < len(str1)):
+            if(str1[index1] != str2[index2]):
+                if(foundDifference):
+                    return False
+                index2+= 1
+            else:
+                index2 += 1
+                index2 += 1
+        return  True
+
+
         
 
 
