@@ -185,6 +185,96 @@ class Chapter1:
         res = ''.join(str(res).split(','))
         res = ''.join(str(res).split("'"))
         print(res.replace(" ",''))  
+    def rotateMatrix(self, n)-> bool:
+        # this is basically asking us to swap
+        if len(n) == 0: return False
+        top = n.top
+        left = n.left
+        right = n.bottom
+        bottom = n.bottom
+        for i in range(0, len(n)):
+            temp = top[i]
+            top[i] = left[i]
+            bottom[i] = right[i]
+            right[i] = temp
+
+        return True
+    
+    def zeroMatrix(self,matrix:int):
+        rowHasZero: bool = False
+        ColHasZero : bool = False
+
+        row : bool =  matrix[0]
+        column : bool = matrix[1]
+        def nullifyRows(matrix, row):
+            for j in range(len(matrix[1])):
+                matrix[row][j] = 0
+        
+        def nullifyColumn( matrix, col):
+            for i in range(len(matrix[0])):
+                matrix[col][i] = 0
+
+
+        # for i in range(len(matrix[0])):
+        #     for j in range(len(matrix[1])):
+        #         print(i,j)
+        #         # if(matrix[i][j] == 0):
+        #         #     row[i] = True
+        #         #     column[j] = True
+        # # nullify rows
+        # for i in range(len(row)):
+        #     if(row[i]):
+        #         nullifyRows(matrix, i)
+        
+        # # nullify column
+        # for j in range(len(column)):
+        #     if(column[j]):
+        #         nullifyColumn(matrix, j)
+
+        
+
+        for i in range(len(matrix[0])):
+            if (matrix[0][i] ==0):
+                rowHasZero = True
+                # print(matrix[0][0])
+                # break
+            
+        print(matrix[0])
+        print(matrix[1])
+        for j in range(len(matrix[1])):
+            if(matrix[1][j] == 0 or 1==1):
+                # print(matrix[1][j])
+                ColHasZero = True
+                # break
+        
+        # check for zeros in the rest of the array
+        for i in range(len(matrix[0])):
+            for j in range(len(matrix[1])):
+                if(matrix[0][i] and matrix[1][j] == 0):
+                    matrix[0][i] =0
+                    matrix[1][j] =0
+
+        # nullify rows
+        for i in range(len(matrix[0])):
+            if(matrix[0][i] == 0):
+                nullifyRows(matrix, i)
+        
+        # nullify column
+        for j in range(len(matrix[1])):
+            if(matrix[1][j] == 0):
+                nullifyColumn(matrix, j)
+
+        # nullify first row
+        if(rowHasZero):
+            nullifyRows(matrix, 0)
+        
+        # nullify first column
+        if(ColHasZero):
+            nullifyColumn(matrix, 0)
+
+
+    def stringRotation(s1: str, s2: str):
+        pass
 
 
 
@@ -205,3 +295,4 @@ runam = Chapter1()
 # runam.OneorZero("baba", "baba")
 runam.specialMultiply("abcd")
 runam.stringCompress("aabbba")
+runam.zeroMatrix([[1,0,3],[4,5,6]])
