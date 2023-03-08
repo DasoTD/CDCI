@@ -170,6 +170,27 @@ class Chapter1:
 
         print("".join(result))
 
+    def stringCompress(self, string: str):
+        words = [c for c in string]
+        consecutive = 0
+        compressed = []
+        for i in range(len(string)):
+            consecutive += 1
+            if( i +1 >= len(string) or words[i] != words[i + 1]):
+                compressed.append(words[i] + str(consecutive))
+                # com =compressed.append(words[i])
+                # conz =compressed.append(consecutive)
+                consecutive = 0
+        res = compressed if len(compressed) < len(string) else string
+        res = ''.join(str(res).split(','))
+        res = ''.join(str(res).split("'"))
+        print(res.replace(" ",''))  
+
+
+
+# is_nice = True
+# state = "nice" if is_nice else "not nice"
+
 
         
 
@@ -183,3 +204,4 @@ runam = Chapter1()
 # runam.PalidromePermutation("")
 # runam.OneorZero("baba", "baba")
 runam.specialMultiply("abcd")
+runam.stringCompress("aabbba")
