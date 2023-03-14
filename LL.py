@@ -2,6 +2,11 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+
+class LinkNode:
+    def __init__(self, value=0, next = None):
+        self.value = value
+        self.next = next
         
 class LinkedList:
     def __init__(self, value):
@@ -59,21 +64,41 @@ class LinkedList:
             prev = current
             current = next
         self.head = prev
+
         
+def is_palindrome(head):
+        # Find the middle of the linked list
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Reverse the second half of the linked list
+        prev, curr = None, slow
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+
+        # Compare the first and second halves of the linked list
+        left, right = head, prev
+        while right:
+            if left.value != right.value:
+                return False
+            left = left.next
+            right = right.next
+
+        return True
     
 
 LL = LinkedList(0)
 LL.prepend(1)
 LL.prepend(2)
-LL.prepend(3)
-# LL.print_list()
-LL.palindrome()
+LL.prepend(2)
+LL.prepend(1)
+# print(LL.is_palindrome())
 
-BB = LinkedList(0)
-BB.prepend(1)
-BB.prepend(2)
-BB.prepend(3)
+head = LinkNode(1, LinkNode(2, LinkNode(2, LinkNode(1))))
+print(is_palindrome(head))
 
-res = LinkedList(0)
-
-res.isEqual(LL, BB)
