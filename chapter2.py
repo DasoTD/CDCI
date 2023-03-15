@@ -85,10 +85,22 @@ class LinkedList:
         temp = self.head
         for _ in range(index):
             temp = temp.next
-        return temp.data
+        return temp
     
     def deleteMiddle(self, index):
+        if index < 0:
+            return None
+        if index == self.length:
+            return self.Pop()
+        if index == 0:
+            return self.first_pop()
         temp = self.Get(index-1)
+        after = temp.next
+        if temp:
+            temp.next = after.next
+            after.next = None
+            self.length -=1
+            return after.data
         pass
     # or
     # temp = self.head
@@ -214,5 +226,6 @@ print(first.first_pop())
 # first.reversed()
 # first.printList()
 print(first.Get(3))
+# print(first.deleteMiddle(1))
 # first.palindrome()
 
