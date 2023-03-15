@@ -33,14 +33,63 @@ class LinkedList:
         self.length +=1
         return True
     
-    def Get(self, index):
-        print(self.length)
-        if index < 0 or index >= self.length:
+    def append(self, data):
+        new_node = Node(data)
+        self.tail.next = new_node
+        new_node = self.tail
+        self.length +=1
+        return True
+    
+    def Pop(self):
+        if self.length ==0:
             return None
+        if self.length == 1:
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return temp.data
+        temp = self.head
+        pre = self.head
+        while(temp.next):
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -=1
+        return temp.data
+        pass
+    def first_pop(self):
+        if self.length ==0:
+            return None
+        elif self.length == 1:
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return temp.data
+        else:
+            temp = self.head
+            self.head = temp.next
+            temp.next = None
+            self.length -=1
+            return temp.data
+
+        pass
+    
+    def Get(self, index):
+        if index < 0 or index > self.length:
+            return None
+        if index == self.length:
+            return self.tail.data
         temp = self.head
         for _ in range(index):
             temp = temp.next
         return temp.data
+    
+    def deleteMiddle(self, index):
+        temp = self.Get(index-1)
+        pass
     # or
     # temp = self.head
         # while temp is not None:
@@ -158,7 +207,10 @@ first = LinkedList(0)
 first.prepend(1)
 first.prepend(2)
 first.prepend(3)
-# first.printList()
+first.append(10) 
+print(first.Pop())
+print(first.first_pop())
+# first.printList() 
 # first.reversed()
 # first.printList()
 print(first.Get(3))
