@@ -98,6 +98,29 @@ class LinkedList:
             return temp.data
 
         pass
+
+    def loopDetection(self):
+        s = set()
+        head =  self.head
+        while head:
+            if (head.data in s):
+                return True
+            else:
+                s.add(head.data)
+                head = head.next
+        return False
+        # print(head.data, tail.data)
+        # res = []
+        # while head:
+
+        #     tail = head.next
+        #     while tail:
+        #         if tail == head:
+        #             res.append(tail.data)
+        #         tail = tail.next
+        #     head = head.next
+        # print(res)
+        pass
     
     def Get(self, index):
         if index < 0 or index > self.length:
@@ -253,14 +276,17 @@ first.prepend(1)
 first.prepend(2)
 first.prepend(3)
 first.append(10) 
-print(first.Pop())
-print(first.first_pop())
+first.append(10) 
+first.prepend(3)
+# print(first.Pop())
+# print(first.first_pop())
 # first.printList() 
 # first.reversed()
 # first.printList()
-print(first.Get(3))
+# print(first.Get(3))
 # print(first.deleteMiddle(1))
 # first.palindrome()
-print(first.partition(3))
+# print(first.partition(3))
 first.sum([1,2,3],[4,5,6])
+print(first.loopDetection())
 
