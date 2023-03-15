@@ -14,15 +14,15 @@ class Node:
 class LinkedList:
   
     # Function to initialize head
-    def __init__(self):
-        self.head = None
+    def __init__(self, value):
+        # self.head = None
 
-        # new_node = Node(value)
-        # self.value = value
-        # self.next = None
-        # self.head = new_node
-        # self.tail = new_node
-        # self.length = 1
+        new_node = Node(value)
+        self.value = value
+        self.next = None
+        self.head = new_node
+        self.tail = new_node
+        self.length = 1
   
     # Function to insert a new node at 
     # the beginning
@@ -30,7 +30,23 @@ class LinkedList:
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
+        self.length +=1
         return True
+    
+    def Get(self, index):
+        print(self.length)
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp.data
+    # or
+    # temp = self.head
+        # while temp is not None:
+        #     if temp.value == index:
+        #         return temp.value
+        #     temp = temp.next
 
     def AddTwoLists(self, first, second):
         prev = None
@@ -133,56 +149,18 @@ class Chapter2:
         B = int(B)
         print(A+B)
 
-    # def palindrome(self, list):
-    #     import re
-    #     s = re.sub(r'[^0-9a-zA-Z]', '', list).lower()
-        
-    #     # w = '[ 1,2,3,4 ]'
-
-    #     # outer= re.compile("\[(.+)\]")
-    #     # m = outer.search(list)
-    #     # inner_str = m.group(1)
-    #     # print(inner_str)
-
-    #     left = 0
-    #     right = len(list) -1
-
-    #     while left < right:
-    #         if s[left] != s[right]:
-    #             print("e no work")
-    #             return False
-    #         else:
-    #             print("e work")
-    #             return True
-        
-    #     pass
 
    
 c2 = Chapter2()
 c2.sum([1,2,3], [4,5,6])
 # c2.palindrome(['1','2','3','2','1'])
-first = LinkedList()
-second = LinkedList()
+first = LinkedList(0)
 first.prepend(1)
-first.prepend(1)
-# first.prepend(3)
-# first.prepend(1)
-# print ("First List is "),
-first.printList()
-first.reversed()
-first.printList()
+first.prepend(2)
+first.prepend(3)
+# first.printList()
+# first.reversed()
+# first.printList()
+print(first.Get(3))
 # first.palindrome()
 
-second.prepend(1)
-second.prepend(1)
-# second.prepend(6)
-
-
-first.isEqual(first, second)
-# print ("second List is "),
-# second.printList()
-
-# res = LinkedList()
-# res.AddTwoLists(first.head, second.head)
-# print ("Resultant list is "),
-# res.printList()
