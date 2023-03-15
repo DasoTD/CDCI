@@ -23,6 +23,28 @@ class LinkedList:
         self.head = new_node
         self.tail = new_node
         self.length = 1
+
+    def partition(self, x):
+        temp = self.Get(x)
+        head = self.head
+        res = []
+        while head:
+            if head.data >= temp:
+                res.append(head.data)
+                head = head.next
+            else:
+                res.insert(0, head.data)
+                head = head.next
+        return self.print_list()
+    
+    def print_list(self):
+        if self.length ==0:
+            return None
+        temp = self.head
+        while temp:
+            print(temp.data)
+            temp= temp.next
+        pass
   
     # Function to insert a new node at 
     # the beginning
@@ -109,13 +131,24 @@ class LinkedList:
         #         return temp.value
         #     temp = temp.next
 
+    def sum(self, A, B):
+        a = ''
+        b = ''
+        for i in reversed(A):
+            a += str(i)
+        for j in reversed(B):
+            b += str(j)
+        a = int(a)
+        b = int(b)
+        print(a+b)
+
     def AddTwoLists(self, first, second):
         prev = None
         temp = None
         carry = 0
   
         # While both list exists
-        while(first is not None or second is not None):
+        while(first  or second ):
             fdata = 0 if first is None else first.data
             sdata = 0 if second is None else second.data
             Sum = carry + fdata + sdata
@@ -228,4 +261,6 @@ print(first.first_pop())
 print(first.Get(3))
 # print(first.deleteMiddle(1))
 # first.palindrome()
+print(first.partition(3))
+first.sum([1,2,3],[4,5,6])
 
