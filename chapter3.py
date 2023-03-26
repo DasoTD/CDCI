@@ -19,6 +19,7 @@ class Stack:
         new_node = Node(value)
         self.top = new_node
         self.bottom = new_node
+        self.minimum = new_node
         self.length = 1
 
     def print_stack(self):
