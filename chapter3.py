@@ -38,10 +38,12 @@ class Stack:
             return temp
         else:
             temp = self.top
+            if self.minimum == temp:
+                self.minimum = min(self)
             self.top = self.top.next
             self.length -=1
             return temp
-            pass
+            
 
     def push(self, value):
         new_node = Node(value)
