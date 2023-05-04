@@ -45,9 +45,13 @@ class Stack:
 
     def push(self, value):
         new_node = Node(value)
+        if self.minimum.value < value:
+            self.minimum = new_node
+        new_node = Node(value)
         if self.length ==0:
             self.top = new_node
             self.bottom = new_node
+            self.minimum = new_node
         else:
             new_node.next = self.top
             self.top = new_node
