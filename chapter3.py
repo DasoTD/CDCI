@@ -35,6 +35,7 @@ class Stack:
             self.top = None
             self.bottom = None
             self.length -=1
+            self.minimum = None
             return temp
         else:
             temp = self.top
