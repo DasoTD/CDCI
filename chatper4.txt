@@ -1,0 +1,20 @@
+A tree is a datastructure that comprises of node
+
+Each tree has a root node
+the root node has zero or more child nodes  and so on
+The tree can not contain circle, they can be in any order, they may or may not have link back
+to their parent nodes
+
+A full node is when every node point to 2 node or zero node
+a perfect node is when all node is equal
+
+Types of Tree
+
+1. Binary Tree
+2. Binary Search Tree
+
+A binary tree is a tree in which each node has up to 2 children
+A node is called  "leaf" node if it has  no children
+A binary Search tree is a type of tree in which every node fits a specific ordering property. all left
+descendants <= n < all right descendants. this must be true for each node name
+ 
