@@ -5,8 +5,11 @@ the root node has zero or more child nodes  and so on
 The tree can not contain circle, they can be in any order, they may or may not have link back
 to their parent nodes
 
-A full node is when every node point to 2 node or zero node
-a perfect node is when all node is equal
+A full node is when every node point to 2 node or zero node i.e no node have one child
+A perfect node is when all node is equal, where all node have 2 children and all leat at  the same level
+
+A complete BT is BT in which every level of the tree is fully filled from left to right
+
 
 Types of Tree
 
@@ -17,4 +20,34 @@ A binary tree is a tree in which each node has up to 2 children
 A node is called  "leaf" node if it has  no children
 A binary Search tree is a type of tree in which every node fits a specific ordering property. all left
 descendants <= n < all right descendants. this must be true for each node name
- 
+
+the definition of bst varies, some cannot have duplicate values, in some d duplicate values will be on the right 
+or can be on either side . all this are valid, but u should clarify this from the interviewer
+
+
+
+BALANCED VS UNBALANCED
+
+BINARY TREE TRAVERSAL
+Traversal is a process to visit all the nodes of a tree and may print their values too. 
+Because, all nodes are connected via edges (links) we always start from the root (head) node.
+
+
+In-order Traversal
+Pre-order Traversal
+Post-order Traversal
+
+
+In-order Traversal
+In this traversal method, the left subtree is visited first, 
+then the root and later the right sub-tree. We should always remember that every node may represent a subtree itself.
+
+
+Pre-order Traversal
+In this traversal method, the root node is visited first, 
+then the left subtree and finally the right subtree.
+
+Post-order Traversal
+In this traversal method, the root node is visited last, hence the name. 
+First we traverse the left subtree, then the right subtree and finally the root node.
+
