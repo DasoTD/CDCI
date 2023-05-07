@@ -8,7 +8,8 @@ to their parent nodes
 A full node is when every node point to 2 node or zero node i.e no node have one child
 A perfect node is when all node is equal, where all node have 2 children and all leat at  the same level
 
-A complete BT is BT in which every level of the tree is fully filled from left to right
+A complete BT is BT in which every level of the tree is fully filled from left to right, other than
+the rightmost elements of the last level
 
 
 Types of Tree
@@ -51,3 +52,13 @@ Post-order Traversal
 In this traversal method, the root node is visited last, hence the name. 
 First we traverse the left subtree, then the right subtree and finally the root node.
 
+BINARY HEAPS(MIN-HEAPS and MAX-HEAPS)
+
+A  min-heaps is a complete binary tree.
+it has 2 key operation (insert and extraxt_min)
+
+
+A tree is a connected graph without cycles(a tree is a type of graph)
+
+A GRAPH
+A graph is simply a collection of nodes with edges between (some of) them
