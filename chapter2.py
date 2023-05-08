@@ -212,6 +212,53 @@ class LinkedList:
         reversed = self.reversed()
         print(reversed)
         return self.isEqual(self, reversed)
+    
+
+    def partition_list(self, x):
+        if not self.head:
+            return None
+        
+        dummy1 = Node(0)
+        dummy2 = Node(0)
+        prev1 = dummy1
+        prev2 = dummy2
+        current = self.head
+        
+        while current:
+            if current.value < x:
+                prev1.next = current
+                prev1 = current
+            else:
+                prev2.next = current
+                prev2 = current
+            current = current.next
+        
+        prev2.next = None
+        prev1.next = dummy2.next
+        
+        self.head = dummy1.next
+
+    def reverse_between(self, m, n):
+        if self.length <2 :
+            return None
+        dummy = Node(0)
+        dummy.next = self.head
+        prev = dummy
+    
+        for _ in range(m):
+            prev = prev.next
+    
+        current = prev.next
+    
+        for _ in range(n - m):
+            temp = current.next
+            current.next = temp.next
+            temp.next = prev.next
+            prev.next = temp
+    
+        self.head = dummy.next
+        self.print_list()
+        
         
 
     def reversed(self):
@@ -280,8 +327,9 @@ first.prepend(5)
 # first.palindrome()
 print("file")
 first.printList()
-print(first.partition(3))
-print("cook")
+# print(first.partition(3))
+# print("cook")
+first.reverse_between(2,3)
 # first.printList()
 # first.sum([1,2,3],[4,5,6])
 # print(first.loopDetection())

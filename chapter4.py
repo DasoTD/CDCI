@@ -138,6 +138,8 @@ class BST:
         return False
 
     def get_min(self):
+        if self.root == None:
+            return None
         root = self.root
         while root.left:
             root = root.left
