@@ -34,24 +34,84 @@ class BST:
                     return True
                 temp = temp.right
 
+    def inorder(self):
+        if self.root.value is not None:
+            self.inorder(self.root.left)
+            print(self.root.value, end= "")
+            self.inorder(self.root.right)
+
+    def deleteNode(self, key):
+        root = self.root
+        # Base Case
+        if root.value is None:
+            return root
+
+        # If the key to be deleted
+        # is smaller than the root's
+        # key then it lies in  left subtree
+        if key < root.value:
+            root.left = self.deleteNode(root.left, key)
+
+        # If the kye to be delete
+        # is greater than the root's key
+        # then it lies in right subtree
+        elif(key > root.value):
+            root.right = self.deleteNode(root.right, key)
+
+        # If key is same as root's key, then this is the node
+        # to be deleted
+        else:
+
+            # Node with only one child or no child
+            if root.left is None:
+                temp = root.right
+                root = None
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+
+            # Node with two children:
+            # Get the inorder successor
+            # (smallest in the right subtree)
+            temp = self.get_min(root.right)
+
+            # Copy the inorder successor's
+            # content to this node
+            root.value = temp.value
+
+            # Delete the inorder successor
+            root.right = self.deleteNode(root.right, temp.value)
+
+        return root
+
     def delete(self, value):
-        if self.root == None:
+        new_node = Node(value)
+        if self.root is None:
             return self.root
         
         temp = self.root
-        if value < temp.value:
-            temp.left = self.delete(value)
-        elif value > temp.value:
-            temp.right = self.delete( value)
-
-        else :
-            if temp.left == None:
-                return temp.right
-            elif temp.right == None:
-                return temp.left
-            temp.value = self.inOrderSuccessor(temp.right)
-            temp.right = self.delete(temp.right, temp.value)
+        while temp:
+            if new_node.value == temp.value:
+                temp.value = self.inOrderSuccessor()
+            if new_node.value < temp.value:
+                temp = temp.value
+                # temp.left = self.delete(value)
+            elif new_node.value > temp.value:
+                temp = temp.right
+                # temp.right = self.delete( value)
         return temp
+
+        # else :
+        #     if temp.left == None:
+        #         return temp.right
+        #     elif temp.right == None:
+        #         return temp.left
+        #     temp.value = self.inOrderSuccessor(temp.right)
+        #     temp.right = self.delete(temp.right, temp.value)
+        # return temp
 
     def inOrderSuccessor(self):
         minimum = self.root.value
@@ -134,9 +194,9 @@ bst.insert(13)
 bst.insert(6)
 bst.insert(15)
 print(bst.search(6))
-bst.delete(6)
+bst.deleteNode(14)
 print(bst.search(6))
-
+print(bst.search(14))
 
 # def delete(self, value):
 #     if self.root == None:
