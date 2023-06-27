@@ -307,7 +307,7 @@ class Chapter2:
 
    
 c2 = Chapter2()
-# c2.sum([1,2,3], [4,5,6])
+c2.sum([1,2,3], [4,5,6])
 # c2.palindrome(['1','2','3','2','1'])
 first = LinkedList(0)
 first.prepend(1)
