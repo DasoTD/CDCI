@@ -45,9 +45,42 @@ func areCharactersUnique(s string) bool{
 	return true
 }
 
+func twoSum(nums []int, target int) []int {
+	m := make(map[int]int)
+	for idx, num := range(nums){
+
+		if v, found := m[target- num]; found { return []int {v, idx}}
+		
+
+		m[num] = idx
+	}
+	return nil
+}
+func TwoSum(nums []int, target int) bool {
+	i := 0
+	j := len(nums) - 1
+	sort.Ints(nums)
+
+	for(i < j){
+		if (nums[i] + nums[j] == target){
+			return true // []int {nums[i], nums[j]}
+		} else if (nums[i] + nums[j] < target){
+			i++;
+            
+		} else {
+            j--;
+		}
+			
+	}
+	return false;
+}
+
+
+
 
 func main(){
 	IsUnique("dfata")
 	areCharactersUnique("abcdd")
+	// twoSum([2, 7, 11, 15], 9)
 }
 
