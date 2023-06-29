@@ -49,7 +49,7 @@ func (l *List) remove(value int) {
     }
 }
 
-func main() {
+func mainz() {
     list := &List{}
     list.add(1)
     list.add(2)

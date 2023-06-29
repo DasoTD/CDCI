@@ -3,9 +3,12 @@ package main
 import (
 	"fmt"
 	"strings"
+	// "github.com/dasotd/cdci/cha"
 )
 
 func main() {
+	// cha("data")
+	fmt.Print("cookkkok")
   str1 := "educative.io"
 	fmt.Println(str1, "io", strings.Contains(str1, "io"))
 	fmt.Println(str1, "shot", strings.Contains(str1, "shot"))
