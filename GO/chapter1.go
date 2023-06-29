@@ -75,12 +75,32 @@ func TwoSum(nums []int, target int) bool {
 	return false;
 }
 
+func permuation(s1,s2 string) bool {
+	if len(s1) != len(s2){
+		fmt.Print("kole work")
+		return false
+	}
+	s1 = SortString(s1)
+	s2 = SortString(s2)
+
+	for i:=0; i<len(s1); i++{
+		if s1[i] != s2[i]{
+			fmt.Print("ko work")
+			return false
+		}
+
+	}
+	fmt.Print("o work")
+	return true
+}
+
 
 
 
 func main(){
 	IsUnique("dfata")
 	areCharactersUnique("abcdd")
+	permuation("dad", "dda")
 	// twoSum([2, 7, 11, 15], 9)
 }
 

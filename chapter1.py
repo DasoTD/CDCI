@@ -287,7 +287,7 @@ class Chapter1:
 
 runam = Chapter1()
 # runam.oneOne('4456')
-# runam.permutation("dadad", "adadf")
+runam.permutation("dadad", "adadd")
 # runam.URLify("oloba, data UK")
 # runam.SinglePermutation("data")
 # runam.palindrome("madadm")
@@ -295,33 +295,33 @@ runam = Chapter1()
 # runam.OneorZero("baba", "baba")
 runam.specialMultiply("abcd")
 runam.stringCompress("aabbba")
-runam.zeroMatrix([[1,0,3],[4,5,6]])
+# runam.zeroMatrix([[1,0,3],[4,5,6]])
 
 
-def areCharactersUnique(s):
+# def areCharactersUnique(s):
      
-    # An integer to store presence/absence
-    # of 26 characters using its 32 bits
-    checker = 0
+#     # An integer to store presence/absence
+#     # of 26 characters using its 32 bits
+#     checker = 0
      
-    for i in range(len(s)):
+#     for i in range(len(s)):
          
-        val = ord(s[i]) - ord('a')
+#         val = ord(s[i]) - ord('a')
          
-        # If bit corresponding to current
-        # character is already set
-        if (checker & (1 << val)) > 0:
-            return False
+#         # If bit corresponding to current
+#         # character is already set
+#         if (checker & (1 << val)) > 0:
+#             return False
          
-        # set bit in checker
-        checker |= (1 << val)
+#         # set bit in checker
+#         checker |= (1 << val)
          
-    return True
+#     return True
      
-# Driver code
-s = "aaabbccdaa"
-if areCharactersUnique(s):
-    print("Yes")
-else:
-    print("No")
+# # Driver code
+# s = "aaabbccdaa"
+# if areCharactersUnique(s):
+#     print("Yes")
+# else:
+#     print("No")
      
