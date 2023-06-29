@@ -31,9 +31,23 @@ func IsUnique(s string) bool{
 	return true
 
 }
+func areCharactersUnique(s string) bool{
+	checker := 0
+	for i :=0; i <len(s); i++ {
+		bitAtIndex  := s[i] - 'a';
+		if ((checker & (1 << bitAtIndex)) > 0) {
+			fmt.Print("falsez")
+            return false
+        }
+		checker = checker | (1 << bitAtIndex);
+	}
+	fmt.Print("truez")
+	return true
+}
 
 
 func main(){
 	IsUnique("dfata")
+	areCharactersUnique("abcdd")
 }
 
