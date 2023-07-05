@@ -133,6 +133,43 @@ func lengthOfLongestSubstring(s string) int {
 	return maxLength
 }
 
+func isValid(s string) bool {
+	stack := []rune{} // A stack to store the opening brackets encountered
+
+	// Define a mapping of opening brackets to their corresponding closing brackets
+	bracketMap := map[rune]rune{
+		'(': ')',
+		'{': '}',
+		'[': ']',
+	}
+
+	for _, char := range s {
+		// If the current character is an opening bracket, push it onto the stack
+		if isOpeningBracket(char) {
+			stack = append(stack, char)
+		} else {
+			// If the current character is a closing bracket
+			// and the stack is empty or the top of the stack does not match the current character,
+			// the string is not valid
+			if len(stack) == 0 || bracketMap[stack[len(stack)-1]] != char {
+				fmt.Print("false")
+				return false
+			}
+			// Pop the top element from the stack since it matches the current closing bracket
+			stack = stack[:len(stack)-1]
+		}
+	}
+
+	// If there are remaining opening brackets in the stack, the string is not valid
+	fmt.Print("true")
+	return len(stack) == 0
+}
+
+// Helper function to check if a character is an opening bracket
+func isOpeningBracket(char rune) bool {
+	return char == '(' || char == '{' || char == '['
+}
+
 
 
 func LengthOfLongestSubstring(s string) int {
@@ -194,6 +231,56 @@ func max(numbers map[int]int) (maxNumber int) {
 // 	return result
 // }
 
+func maxProfit(prices []int) int {
+	result := 0
+	l,r := 0, len(prices)-1
+	if r <= 1 {
+ 		return 0 // If the array has less than 2 elements, no profit can be achieved
+	}
+	for l<r {
+		if prices[l]<prices[r] && prices[r]-prices[l]> result {
+			result = prices[r]-prices[l]
+		}
+		l++
+		r--
+	}
+	return result
+    
+}
+
+// func maxProfit(prices []int) int {
+// 	n := len(prices)
+// 	if n <= 1 {
+// 		return 0 // If the array has less than 2 elements, no profit can be achieved
+// 	}
+
+// 	// Initialize pointers for buying and selling days
+// 	buyDay := 0
+// 	sellDay := 1
+// 	maxProfit := 0
+
+// 	for sellDay < n {
+// 		// Calculate the profit if we sell on the current day
+// 		profit := prices[sellDay] - prices[buyDay]
+
+// 		// If the profit is greater than the maximum profit so far, update it
+// 		if profit > maxProfit {
+// 			maxProfit = profit
+// 		}
+
+// 		// If the current price is lower than the price on the buy day, update the buy day
+// 		if prices[sellDay] < prices[buyDay] {
+// 			buyDay = sellDay
+// 		}
+
+// 		// Move the sell day pointer to the next day
+// 		sellDay++
+// 	}
+
+// 	return maxProfit
+// }
+
+
 
 func main(){
 	IsUnique("dfata")
@@ -201,5 +288,6 @@ func main(){
 	permuation("dad", "dda")
 	// twoSum([2, 7, 11, 15], 9)
 	LengthOfLongestSubstring("abcabcbb")
+	isValid("()")
 }
 
