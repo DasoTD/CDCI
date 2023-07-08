@@ -280,8 +280,98 @@ func maxProfit(prices []int) int {
 // 	return maxProfit
 // }
 
+func trap(height []int) int {
+	n := len(height)
+	if n <= 2 {
+		return 0 // If there are 2 or fewer bars, no water can be trapped
+	}
+
+	leftMax := make([]int, n)  // Maximum height to the left of each bar
+	rightMax := make([]int, n) // Maximum height to the right of each bar
+
+	// Compute the maximum height to the left of each bar
+	leftMax[0] = height[0]
+	for i := 1; i < n; i++ {
+		leftMax[i] = MAX(leftMax[i-1], height[i])
+	}
+
+	fmt.Print("leftMax", leftMax)
+
+	// Compute the maximum height to the right of each bar
+	rightMax[n-1] = height[n-1]
+	for i := n - 2; i >= 0; i-- {
+		rightMax[i] = MAX(rightMax[i+1], height[i])
+	}
+
+	// Compute the total amount of trapped water
+	water := 0
+	for i := 1; i < n-1; i++ {
+		minHeight := MIN(leftMax[i], rightMax[i])
+		if minHeight > height[i] {
+			water += minHeight - height[i]
+		}
+	}
+	fmt.Print(water)
+
+	return water
+}
+
+// Helper function to find the maximum of two integers
+func MAX(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// Helper function to find the minimum of two integers
+func MIN(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func setZeroes(matrix [][]int) {
+	m := len(matrix)
+	n := len(matrix[0])
+
+	// Use two boolean arrays to keep track of rows and columns that need to be set to 0
+	rows := make([]bool, m)
+	cols := make([]bool, n)
+
+	// Scan the matrix to mark rows and columns that contain 0
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if matrix[i][j] == 0 {
+				rows[i] = true
+				cols[j] = true
+			}
+		}
+	}
+
+	// Set rows to 0
+	for i := 0; i < m; i++ {
+		if rows[i] {
+			for j := 0; j < n; j++ {
+				matrix[i][j] = 0
+			}
+		}
+	}
+
+	// Set columns to 0
+	for j := 0; j < n; j++ {
+		if cols[j] {
+			for i := 0; i < m; i++ {
+				matrix[i][j] = 0
+			}
+		}
+	}
+}
 
 
+var adg = []int {0,1,0,2,1,0,1,3,2,1,2,1}
+// var ze = []int [[1,1,1],[1,0,1],[1,1,1]]
 func main(){
 	IsUnique("dfata")
 	areCharactersUnique("abcdd")
@@ -289,5 +379,8 @@ func main(){
 	// twoSum([2, 7, 11, 15], 9)
 	LengthOfLongestSubstring("abcabcbb")
 	isValid("()")
+	fmt.Print("cook")
+	trap(adg)
+	// setZeroes
 }
 
