@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -375,6 +376,34 @@ func URLify(w string) string {
 	return S
 }
 
+func stringCompress(str string) string {
+	n := len(str)
+	if n <=1 {
+		return str
+	}
+
+	compressed := ""
+	count := 1 
+
+	for i:= 1; i< n; i++ {
+		if str[i-1] == str[i]{
+			count ++
+		}else {
+			compressed += string(str[i-1]) + strconv.Itoa(count)
+			count = 1
+		}
+	}
+
+	// Add the last character and its count to the compressed string
+	compressed += string(str[n-1]) + strconv.Itoa(count)
+
+	// Return the compressed string only if it is shorter than the original string
+	if len(compressed) < n {
+		return compressed
+	}
+	return str
+}
+
 
 var adg = []int {0,1,0,2,1,0,1,3,2,1,2,1}
 // var ze = []int [[1,1,1],[1,0,1],[1,1,1]]
@@ -389,5 +418,6 @@ func main(){
 	trap(adg)
 	URLify("my sunday is great")
 	// setZeroes
+	stringCompress("aabcccccaaa")
 }
 
