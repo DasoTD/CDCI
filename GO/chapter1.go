@@ -21,7 +21,7 @@ func IsUnique(s string) bool{
 
 	ss := SortString(s)
 	for i :=0; i< len(ss); i++{
-		for j :=i +1; j< len(ss); j++{
+		for j :=i +1; j< len(ss)-1; j++{
 			if (ss[i]==ss[j]){
 				fmt.Print("false")
 				return false
@@ -369,6 +369,12 @@ func setZeroes(matrix [][]int) {
 	}
 }
 
+func URLify(w string) string {
+	S := strings.Replace(w, " ", "%20", -1)
+	fmt.Println(S)
+	return S
+}
+
 
 var adg = []int {0,1,0,2,1,0,1,3,2,1,2,1}
 // var ze = []int [[1,1,1],[1,0,1],[1,1,1]]
@@ -381,6 +387,7 @@ func main(){
 	isValid("()")
 	fmt.Print("cook")
 	trap(adg)
+	URLify("my sunday is great")
 	// setZeroes
 }
 
