@@ -404,6 +404,38 @@ func stringCompress(str string) string {
 	return str
 }
 
+func ZeroMatrix(matrix [][]int) {
+	m := len(matrix)
+	n := len(matrix[0])
+	rows := make([]bool, m)
+	cols := make([]bool, n)
+
+	for i := 0; i<m; i++{
+		for j :=0; j<n; j++ {
+			if matrix[i][j]==0{
+				rows[i]=true
+				cols[j]=true
+			}
+		}
+	}
+
+	for i := 0; i<m; i++{
+		if rows[i]{
+			for j :=0; j<n; j++{
+				matrix[i][j]=0
+			}
+		}
+	}
+
+	for j :=0; j<n; j++{
+		if cols[j]{
+			for i:=0; i<m; i++{
+				matrix[i][j]=0
+			}
+		}
+	}
+}
+
 
 var adg = []int {0,1,0,2,1,0,1,3,2,1,2,1}
 // var ze = []int [[1,1,1],[1,0,1],[1,1,1]]
