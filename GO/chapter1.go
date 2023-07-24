@@ -439,7 +439,7 @@ func ZeroMatrix(matrix [][]int) {
 
 var adg = []int {0,1,0,2,1,0,1,3,2,1,2,1}
 // var ze = []int [[1,1,1],[1,0,1],[1,1,1]]
-func main(){
+func mainz(){
 	IsUnique("dfata")
 	areCharactersUnique("abcdd")
 	permuation("dad", "dda")

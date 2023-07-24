@@ -6,7 +6,7 @@ import (
 	// "github.com/dasotd/cdci/cha"
 )
 
-func main() {
+func mainzz() {
 	// cha("data")
 	fmt.Print("cookkkok")
   str1 := "educative.io"
