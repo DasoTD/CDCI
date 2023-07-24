@@ -20,11 +20,12 @@ func(l *LinkedList) prepend(value int) {
 		l.head = newNode
 		l.length ++
 	} else {
+		l.head.next = l.head
 		l.head = newNode
-		l.tail = newNode
+		// l.tail = newNode
 		l.length ++
 	}
-	return
+	
 }
 func (l *LinkedList) append(value int) bool{
 	newNode := &Node{data: value}
@@ -137,16 +138,18 @@ func nestLoop(data []int )  {
 
 var val = []int {1,2,3,4,5}
 func main(){
-	// list := &LinkedList{}
-	// list.append(1)
-    // list.append(2)
-    // list.append(3)
-    // list.append(4)
+	list := &LinkedList{}
+	list.append(1)
+    list.append(2)
+    list.append(3)
+    list.append(4)
 
-    // fmt.Println("Initial List: ")
-    // list.printList()
-	// list.deleteWithValue(3)
-	// // list.pop()
-	// list.printList()
-	nestLoop(val)
+    fmt.Println("Initial List: ")
+    list.printList()
+	list.deleteWithValue(3)
+	fmt.Println("deleted List: ")
+	list.prepend(5)
+	// list.pop()
+	list.printList()
+	// nestLoop(val)
 }
