@@ -18,6 +18,7 @@ func(l *LinkedList) prepend(value int) {
 	if l.head != nil {
 		newNode.next = l.head
 		l.head = newNode
+		// l.tail = newNode
 		l.length ++
 	} else {
 		l.head.next = l.head
@@ -34,17 +35,19 @@ func (l *LinkedList) append(value int) bool{
 		l.tail = newNode
 		l.length++
 		return true
-	}
+	} else {
+		// curr := l.head
+    // for curr.next != nil {
+    //     curr = curr.next
+    // }
+    // curr.next = newNode
 
-	curr := l.head
-    for curr.next != nil {
-        curr = curr.next
-    }
-    curr.next = newNode
-	// l.tail.next = newNode
-	// newNode = l.tail
+	//this makes more faster
+	l.tail.next = newNode
+	l.tail = newNode
 	l.length++
 	return true
+	}
 
 }
 
@@ -136,20 +139,41 @@ func nestLoop(data []int )  {
 	}
 }
 
+func (l *LinkedList) deleteDups() {
+	head := l.head
+	for head != nil {
+		runner := head
+		for runner.next != nil {
+			if runner.next.data == head.data{
+				runner.next = runner.next.next
+			} else {
+				runner = runner.next
+			}
+		}
+		head = head.next
+	}
+}
+
 var val = []int {1,2,3,4,5}
-func main(){
+func main1(){
 	list := &LinkedList{}
 	list.append(1)
     list.append(2)
-    list.append(3)
-    list.append(4)
+	list.append(3)
+    list.append(2)
+    // list.append(3)
+    // list.append(4)
 
-    fmt.Println("Initial List: ")
-    list.printList()
-	list.deleteWithValue(3)
-	fmt.Println("deleted List: ")
+    // fmt.Println("Initial List: ")
+    // list.printList()
+	// list.deleteWithValue(3)
+	// fmt.Println("deleted List: ")
 	list.prepend(5)
 	// list.pop()
+	list.deleteDups()
+	list.printList()
+	// fmt.Println("now pop")
+	// fmt.Println(list.pop())
 	list.printList()
 	// nestLoop(val)
 }
