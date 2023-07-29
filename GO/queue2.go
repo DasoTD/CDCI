@@ -2,35 +2,33 @@ package main
 
 import "fmt"
 
-type Queue []*Order
-
-type Order struct {
+type Order2 struct {
 	priority     int
 	quantity     int
 	product      string
 	customerName string
-
 }
 
-func(order *Order) New(priority int, quantity int, product string, customerName string){
+type Queue2 []*Order2
+
+func (order *Order2) New(priority, quantity int, product, customerName string) {
 	order.priority = priority
-	order.quantity = quantity
+	order.quantity =quantity
 	order.product = product
 	order.customerName = customerName
 }
 
-func (queue *Queue) Add (order *Order){
-	if len(*queue) == 0 {
+func (queue * Queue2) Add(order *Order2){
+	if len(*queue)==0{
 		*queue = append(*queue, order)
 	} else {
 		var appended bool
 		appended = false
 		var i int
-		var addedOrder *Order
-
+		var addedOrder *Order2
 		for i, addedOrder = range *queue {
 			if order.priority > addedOrder.priority {
-				*queue = append((*queue)[:i], append(Queue{order}, (*queue)[i:]...)...)
+				*queue = append((*queue)[:i],append(Queue2{order}, (*queue)[i:]...)...)
 				appended = true
 				break
 			}
@@ -38,14 +36,27 @@ func (queue *Queue) Add (order *Order){
 		if !appended {
 			*queue = append(*queue, order)
 		}
+
 	}
+}
+
+func (queue *Queue2) DeQueue() Queue2{
+	if len(*queue)==0 {
+		return nil
+	}
+	removed := (*queue)[:1]
+
+	*queue = (*queue)[1:]
+
+	return removed
+
 }
 
 func main(){
 	// var queue Queue
-	queue := make(Queue, 0)
+	queue := make(Queue2, 0)
 
-	var order1 *Order = &Order{}
+	var order1 *Order2 = &Order2{}
 
 	var priority1 int = 1
 	var quantity1 int = 20
@@ -54,7 +65,7 @@ func main(){
 
 	order1.New(priority1, quantity1, product1, customerName1)
 
-	var order2 *Order = &Order{}
+	var order2 *Order2 = &Order2{}
 
 	var priority2 int = 1
 	var quantity2 int = 10
@@ -63,7 +74,7 @@ func main(){
 
 	order2.New(priority2,quantity2,product2,customerName2)
 
-	var order3 *Order = &Order{}
+	var order3 *Order2 = &Order2{}
 
 	var priority3 int = 3
 	var quantity3 int = 10
@@ -76,6 +87,22 @@ func main(){
 	queue.Add(order1)
 	queue.Add(order2)
 	queue.Add(order3)
+
+	for i := 0; i < len(queue); i++ {
+		fmt.Println(queue[i])
+	}
+
+	queue.DeQueue()
+
+	fmt.Println("dxhcgfct")
+
+	for i := 0; i < len(queue); i++ {
+		fmt.Println(queue[i])
+	}
+
+	fmt.Println(queue.DeQueue())
+
+	fmt.Println("dddd")
 
 	for i := 0; i < len(queue); i++ {
 		fmt.Println(queue[i])
