@@ -82,9 +82,10 @@ func (tree *BinarySearchTree) SearchNode(value int) bool {
 	return searchNode(tree.rootNode, value)
 }
 
-
+var count int
 
 func searchNode(tree *TreeNodes, value int) bool {
+	count++
 	if tree == nil {
 		return false
 	}
@@ -102,11 +103,16 @@ func searchNode(tree *TreeNodes, value int) bool {
 
 func main(){
 	var tree *BinarySearchTree = &BinarySearchTree{}
-	tree.InsertElement(8)
-	tree.InsertElement(3)
-	tree.InsertElement(10)
-	tree.InsertElement(12)
+	tree.InsertElement(100)
+	tree.InsertElement(200)
+	tree.InsertElement(300)
+	tree.InsertElement(32)
+	tree.InsertElement(16)
+	tree.InsertElement(65)
+	tree.InsertElement(43)
+	tree.InsertElement(25)
 	// fmt.Println(tree)
-	fmt.Println(tree.SearchNode(10))
+	fmt.Println(tree.SearchNode(25))
+	fmt.Println(count)
 	// tree.Print()
 }
