@@ -99,6 +99,53 @@ func searchNode(tree *TreeNodes, value int) bool {
 	return true
 }
 
+func (tree *BinarySearchTree) RemoveNode(value int) {
+	tree.lock.Lock()
+	defer tree.lock.Unlock()
+	removeNode(tree.rootNode, value)
+}
+
+
+func removeNode(treeNode *TreeNodes, value int) *TreeNodes {
+	if treeNode == nil {
+		return nil
+	}
+	if value < treeNode.value {
+		treeNode.leftNode = removeNode(treeNode.leftNode, value)
+		return treeNode
+	}
+	if value > treeNode.value {
+		treeNode.rightNode = removeNode(treeNode.rightNode, value)
+		return treeNode
+	}
+
+	if treeNode.leftNode == nil && treeNode.rightNode == nil {
+		treeNode = nil
+		return nil
+	}
+	if treeNode.leftNode == nil {
+		treeNode = treeNode.rightNode
+		return treeNode
+	}
+	if treeNode.rightNode == nil {
+		treeNode = treeNode.leftNode
+		return treeNode
+	}
+	var leftmostrightNode *TreeNodes
+	leftmostrightNode = treeNode.rightNode
+	for {
+
+		if leftmostrightNode != nil && leftmostrightNode.leftNode != nil {
+			leftmostrightNode = leftmostrightNode.leftNode
+		} else {
+			break
+		}
+	}
+	treeNode.value, treeNode.value = leftmostrightNode.value, leftmostrightNode.value
+	treeNode.rightNode = removeNode(treeNode.rightNode, treeNode.value)
+	return treeNode
+}
+
 
 
 func main(){
@@ -114,5 +161,8 @@ func main(){
 	// fmt.Println(tree)
 	fmt.Println(tree.SearchNode(25))
 	fmt.Println(count)
-	// tree.Print()
+	tree.Print()
+	tree.RemoveNode(25)
+	fmt.Println("remove")
+	tree.Print()
 }
