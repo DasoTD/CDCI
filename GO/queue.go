@@ -41,7 +41,7 @@ func (queue *Queue) Add (order *Order){
 	}
 }
 
-func main(){
+func mainf(){
 	// var queue Queue
 	queue := make(Queue, 0)
 

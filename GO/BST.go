@@ -221,7 +221,7 @@ func (tree *BinarySearchTree) MaxNode() *int{
 		treeNode = treeNode.rightNode
 	}
 }
-func main(){
+func maingg(){
 	var tree *BinarySearchTree = &BinarySearchTree{}
 	tree.InsertElement(100)
 	tree.InsertElement(200)

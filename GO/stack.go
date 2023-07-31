@@ -55,7 +55,7 @@ func (stack *Stack) Pop() *Element {
 }
 
 // main method
-func main() {
+func maing() {
 	var stack *Stack = &Stack{}
 	stack.New()
 	var element1 *Element = &Element{3}

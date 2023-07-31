@@ -52,7 +52,7 @@ func (queue *Queue2) DeQueue() Queue2{
 
 }
 
-func main(){
+func mainy(){
 	// var queue Queue
 	queue := make(Queue2, 0)
 
