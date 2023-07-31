@@ -147,6 +147,47 @@ func removeNode(treeNode *TreeNodes, value int) *TreeNodes {
 }
 
 
+func (tree *BinarySearchTree) InOrderTraverseTree(function func(int)) {
+	tree.lock.RLock()
+	defer tree.lock.RUnlock()
+	inOrderTraverseTree(tree.rootNode, function)
+}
+
+func inOrderTraverseTree(treeNode *TreeNodes, function func(int)) {
+	if treeNode != nil {
+	inOrderTraverseTree(treeNode.leftNode, function)
+	function(treeNode.value)
+	inOrderTraverseTree(treeNode.rightNode, function)
+	}
+}
+
+func (tree *BinarySearchTree) PreOrderTraverseTree(function func(int)) {
+	tree.lock.Lock()
+	defer tree.lock.Unlock()
+	preOrderTraverseTree(tree.rootNode, function)
+}
+
+func preOrderTraverseTree(treeNode *TreeNodes, function func(int)) {
+	if treeNode != nil {
+	function(treeNode.value)
+	preOrderTraverseTree(treeNode.leftNode, function)
+	preOrderTraverseTree(treeNode.rightNode, function)
+}
+}
+
+func (tree *BinarySearchTree) PostOrderTraverseTree(function func(int)) {
+	tree.lock.Lock()
+	defer tree.lock.Unlock()
+	postOrderTraverseTree(tree.rootNode, function)
+}
+
+func postOrderTraverseTree(treeNode *TreeNodes, function func(int)) {
+	if treeNode != nil {
+	postOrderTraverseTree(treeNode.leftNode, function)
+	postOrderTraverseTree(treeNode.rightNode, function)
+	function(treeNode.value)
+	}
+}
 
 func main(){
 	var tree *BinarySearchTree = &BinarySearchTree{}
