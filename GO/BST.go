@@ -189,6 +189,38 @@ func postOrderTraverseTree(treeNode *TreeNodes, function func(int)) {
 	}
 }
 
+func (tree *BinarySearchTree) MinNode() *int {
+	tree.lock.RLock()
+	defer tree.lock.RUnlock()
+	treeNode := &TreeNodes{}
+	// var treeNode *TreeNodes
+	// treeNode = tree.rootNode
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.leftNode == nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.leftNode
+	}
+}
+
+func (tree *BinarySearchTree) MaxNode() *int{
+	tree.lock.RLock()
+	defer tree.lock.RUnlock()
+	treeNode := &TreeNodes{}
+
+	if treeNode == nil {
+		return (*int)(nil)
+	}
+	for {
+		if treeNode.rightNode ==nil {
+			return &treeNode.value
+		}
+		treeNode = treeNode.rightNode
+	}
+}
 func main(){
 	var tree *BinarySearchTree = &BinarySearchTree{}
 	tree.InsertElement(100)
@@ -202,8 +234,10 @@ func main(){
 	// fmt.Println(tree)
 	fmt.Println(tree.SearchNode(25))
 	fmt.Println(count)
-	tree.Print()
-	tree.RemoveNode(25)
-	fmt.Println("remove")
-	tree.Print()
+	// tree.Print()
+	// tree.RemoveNode(25)
+	// fmt.Println("remove")
+	// tree.Print()
+	fmt.Println(tree.MinNode())
+	fmt.Println(tree.MaxNode())
 }
