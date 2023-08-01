@@ -60,6 +60,7 @@ func main() {
 	threeStacks.push(2, 30)
 	threeStacks.push(0, 15)
 	threeStacks.push(1, 25)
+	threeStacks.push(2, 27)
 
 	value, _ := threeStacks.pop(0)
 	fmt.Println("Popped from Stack 0:", value)
