@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	// "hash"
 )
 
 const ArraySize = 7
