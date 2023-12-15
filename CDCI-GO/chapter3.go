@@ -169,3 +169,52 @@ func (s *Stack) IsEmpty() bool {
 func (s *Stack) Size() int {
 	return len(s.items)
 }
+
+
+type StackSort struct {
+	items []int
+}
+
+func NewStackSort() *StackSort {
+	return &StackSort{items: []int{}}
+}
+
+func(s *StackSort) IsEmpty() bool{
+	if len(s.items)==0 {
+		return false
+	}
+	return true
+}
+
+func(s *StackSort) Push(value int) {
+	s.items = append(s.items, value)
+}
+
+func(s *StackSort) Pop() (int, bool){
+	if s.IsEmpty(){
+		return -1, false
+	}
+	length := len(s.items)
+	data := s.items[length -1]
+	s.items = s.items[:length-1]
+	return data, true
+}
+
+func(s *StackSort) Peek() (int, bool){
+
+	if s.isEmpty() {
+		return -1, false
+	}
+	
+	return s.items[len(s.items)-1], true 
+	
+}
+func(s *StackSort) isEmpty() bool{
+	if len(s.items) == 0 {
+		return false
+	}
+	return true
+}
+func(s *StackSort) size() int{
+	return len(s.items)
+}

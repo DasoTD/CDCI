@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form beside Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+        }
+
+        #image {
+            max-width: 200%;
+            margin-right: 20px;
+        }
+
+        #form {
+            max-width: 300px;
+        }
+        #field,
+        select {
+            width: 48%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #full {
+            width: 100;
+            padding: 8;
+            box-sizing: border-box;
+        }
+
+        #inner-div {
+            
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div>
+        <img id="image" src="Group 9.svg" alt="Image">
+    </div>
+    
+    
+    <div>
+        <div id="inner-div">
+            <label for="field1">FirstName</label>
+        
+            <label for="field2">LastName</label>        
+        </div>
+        <div id="inner-div">
+            <input type="text" id="field" name="field1" required>
+        
+            <input type="text" id="field" name="field2" required>
+        </div>
+        <div id="inner-div">
+            <label for="field1">Gender</label>
+        
+            <label for="field2">LastName</label>        
+        </div>
+        <div id="inner-div">
+            <select> <option value="select">Select here</option>
+                <option value="Male">M</option>
+                <option value="Female">F</option></select>
+        
+            <input type="date" id="field" name="field2" required>
+        </div>
+
+        <div id="inner-div">
+            <label for="field1">Weight(KG)</label>
+        
+            <label for="field2">Height(CM)</label>        
+        </div>
+        <div id="inner-div">
+            <input type="text" id="field" name="field1" placeholder="Enter Weight" required>
+        
+            <input type="text" id="field" name="field2" placeholder="Enter height here..." required>
+        </div>
+        
+        <div >
+            <label for="field5" class="double-row">Field</label><br/>
+            <input type="text" id="full" name="field5" class="double-row" required>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
