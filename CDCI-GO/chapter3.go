@@ -571,3 +571,59 @@ func isOperand(char rune) bool {
 func isOperator(char rune) bool {
 	return char == '+' || char == '-' || char == '*' || char == '/'
 }
+
+
+
+// func (s *StackR) Pop() (rune, error) {
+// 	if s.isEmpty() {
+// 		return 0, errors.New("stack is empty")
+// 	}
+// 	data := s.items[len(s.items)-1]
+// 	s.items = s.items[:len(s.items)-1]
+// 	return data, nil
+// }
+
+// func (s *StackR) isEmpty() bool {
+// 	return len(s.items) == 0
+// }
+
+type StackNGE struct {
+	items map[string]string
+}
+
+func NewStackNGE() *StackNGE {
+	return &StackNGE{items: make(map[string]string)}
+}
+
+func (s *StackNGE) Push( key,value string) {
+	s.items[key] ="=>" + value
+}
+
+func NGE(array []int){ 
+	stack := NewStackNGE()
+	lengthMinus2 := len(array)-2
+	var i int
+	for i =1; i< lengthMinus2; i++ {
+		n := i + 1
+		for i <= lengthMinus2{ //74,5,2,25
+			if array[n] > array[i] {
+				stack.Push(strconv.Itoa(i), strconv.Itoa(n))
+				break
+			}
+			n = n+1
+		}
+		stack.Push(strconv.Itoa(i), strconv.Itoa(-1))
+
+		// for n <= lengthMinus2 { //this will also work
+		// 	if array[n] > array[i] {
+		// 		stack.Push(strconv.Itoa(array[i]), strconv.Itoa(array[n]))
+		// 		break
+		// 	}
+		// 	n = n + 1
+		// }
+		// if n > lengthMinus2 {
+		// 	stack.Push(strconv.Itoa(array[i]), strconv.Itoa(-1))
+		// }
+	}
+	stack.Push(strconv.Itoa(len(array)-1), strconv.Itoa(-1))
+}
