@@ -5,19 +5,17 @@ import (
 	"errors"
 	"fmt"
 	_ "fmt"
+	"strconv"
 	"time"
 )
 
-
-
 type Stack2 struct {
-	value     []int
-
+	value []int
 }
 
 type StackMin struct {
 	value  []int
-	min int
+	min    int
 	length int
 }
 
@@ -32,44 +30,42 @@ type Element struct {
 
 // var stack2  Stack2
 
-func(stack *StackMin) Push(data int) {
+func (stack *StackMin) Push(data int) {
 	if stack.length == 0 {
 		stack.min = data
 	} else {
-		if stack.min > data{
+		if stack.min > data {
 			stack.min = data
 		}
-		
+
 	}
 	stack.value = append(stack.value[:len(stack.value)-1], data)
 	stack.length = stack.length + 1
 	// stack2.value = append(stack2.value, data)
-	
+
 }
 
-func(stack *StackMin) Peek() (int, bool){
+func (stack *StackMin) Peek() (int, bool) {
 	if stack.length == 0 {
 		return -1, false
 	}
 	data := stack.value[stack.length-1]
-	stack.length = stack.length -1
+	stack.length = stack.length - 1
 	return data, true
 }
 
-func (stack *StackMin) Pop() (int, bool){
+func (stack *StackMin) Pop() (int, bool) {
 	if stack.length == 0 {
 		return -1, false
 	}
 	data := stack.value[stack.length-1]
 	stack.value = stack.value[:stack.length-1]
-	stack.length = stack.length -1
+	stack.length = stack.length - 1
 	return data, true
 
 }
 
-
 ////STACK OF PLATES
-
 
 type SetOfStacks struct {
 	capacity int           // Maximum capacity of each individual stack
@@ -77,22 +73,19 @@ type SetOfStacks struct {
 	current  *list.Element // Pointer to the current stack
 }
 
-
 type Stack struct {
 	items []int
 }
 
-
 func NewSetOfStacks(capacity int) *SetOfStacks {
 	return &SetOfStacks{
 		capacity: capacity,
-		stacks: list.New(),
-		current: nil,
+		stacks:   list.New(),
+		current:  nil,
 	}
 }
 
-
-func(sos *SetOfStacks) Push(value int) {
+func (sos *SetOfStacks) Push(value int) {
 	if sos.current == nil || sos.current.Value.(*Stack).Size() == sos.capacity {
 		newStack := NewStack()
 		sos.current = sos.stacks.PushBack(newStack)
@@ -144,14 +137,11 @@ func (s *SetOfStacks) popAt(index int) (int, error) {
 	return value, err
 }
 
-
-
 func NewStack() *Stack {
 	return &Stack{items: []int{}}
 }
 
-
-func(s *Stack) Push(item int){
+func (s *Stack) Push(item int) {
 	s.items = append(s.items, item)
 }
 
@@ -172,8 +162,7 @@ func (s *Stack) Size() int {
 	return len(s.items)
 }
 
-
-//STACK sort
+// STACK sort
 type StackSort struct {
 	items []int
 }
@@ -182,41 +171,40 @@ func NewStackSort() *StackSort {
 	return &StackSort{items: []int{}}
 }
 
-func(s *StackSort) IsEmpty() bool{
+func (s *StackSort) IsEmpty() bool {
 	return len(s.items) == 0
 }
 
-func(s *StackSort) Push(value int) {
+func (s *StackSort) Push(value int) {
 	s.items = append(s.items, value)
 }
 
-func(s *StackSort) Pop() (int, bool){
-	if s.IsEmpty(){
+func (s *StackSort) Pop() (int, bool) {
+	if s.IsEmpty() {
 		return -1, false
 	}
 	length := len(s.items)
-	data := s.items[length -1]
+	data := s.items[length-1]
 	s.items = s.items[:length-1]
 	return data, true
 }
 
-func(s *StackSort) Peek() (int, bool){
+func (s *StackSort) Peek() (int, bool) {
 
 	if s.isEmpty() {
 		return -1, false
 	}
-	
-	return s.items[len(s.items)-1], true 
-	
+
+	return s.items[len(s.items)-1], true
+
 }
-func(s *StackSort) isEmpty() bool{
+func (s *StackSort) isEmpty() bool {
 	return len(s.items) == 0
 }
 
-func(s *StackSort) size() int{
+func (s *StackSort) size() int {
 	return len(s.items)
 }
-
 
 func SortStack(stack *StackSort) *StackSort {
 	tempStack := NewStack()
@@ -244,33 +232,31 @@ func SortStack(stack *StackSort) *StackSort {
 
 }
 
-
 // ANIMAL SHELTER
 
 type Animal struct {
-	Name string
+	Name      string
 	Timestamp time.Time
 }
 
-type AnimalShelter  struct  {
+type AnimalShelter struct {
 	dogs *list.List
 	cats *list.List
 }
 
-func NewAnimalShelter()  *AnimalShelter {
+func NewAnimalShelter() *AnimalShelter {
 	return &AnimalShelter{
 		dogs: list.New(),
 		cats: list.New(),
 	}
 }
 
-
-func(shelter *AnimalShelter) Enqueue(Name, AnimalType string) {
+func (shelter *AnimalShelter) Enqueue(Name, AnimalType string) {
 	animal := &Animal{
-		Name: Name,
+		Name:      Name,
 		Timestamp: time.Now(),
 	}
-	if AnimalType == "dog"{
+	if AnimalType == "dog" {
 		shelter.dogs.PushBack(animal)
 	} else if AnimalType == "cat" {
 		shelter.cats.PushBack(animal)
@@ -280,7 +266,7 @@ func(shelter *AnimalShelter) Enqueue(Name, AnimalType string) {
 	}
 }
 
-func(shelter *AnimalShelter) DequeueAny()(Animal, error){
+func (shelter *AnimalShelter) DequeueAny() (Animal, error) {
 	if shelter.cats.Len() == 0 && shelter.dogs.Len() == 0 {
 		return Animal{}, errors.New("shelter is empty")
 	}
@@ -305,9 +291,8 @@ func(shelter *AnimalShelter) DequeueAny()(Animal, error){
 
 }
 
-
-func(shelter *AnimalShelter) dequeueCat() Animal {
-	if shelter.cats.Len() ==0 {
+func (shelter *AnimalShelter) dequeueCat() Animal {
+	if shelter.cats.Len() == 0 {
 		return Animal{}
 	}
 	oldestCat := shelter.cats.Front().Value.(Animal)
@@ -326,7 +311,6 @@ func (shelter *AnimalShelter) dequeueDog() Animal {
 	return oldestDog
 }
 
-
 // OTHERS
 
 func isBalancedParentheses(s string) bool {
@@ -334,7 +318,7 @@ func isBalancedParentheses(s string) bool {
 
 	for _, char := range s {
 		switch char {
-		case '(', '[', '{' :
+		case '(', '[', '{':
 			stack = append(stack, char)
 		case ')':
 			if len(stack) == 0 || stack[len(stack)-1] != '(' {
@@ -353,7 +337,7 @@ func isBalancedParentheses(s string) bool {
 			stack = stack[:len(stack)-1]
 		}
 	}
-	
+
 	return len(stack) == 0
 
 }
@@ -366,12 +350,12 @@ func NewStackR() *StackR {
 	return &StackR{items: []rune{}}
 }
 
-func(s *StackR) Push(value rune){
+func (s *StackR) Push(value rune) {
 	s.items = append(s.items, value)
 }
 
-func(s *StackR) Pop()(rune, error){
-	if s.isEmpty(){
+func (s *StackR) Pop() (rune, error) {
+	if s.isEmpty() {
 		return 0, errors.New("stack is empty")
 	}
 	data := s.items[len(s.items)-1]
@@ -379,11 +363,11 @@ func(s *StackR) Pop()(rune, error){
 	return data, nil
 }
 
-func(s *StackR)isEmpty()bool {
+func (s *StackR) isEmpty() bool {
 	return len(s.items) == 0
 }
 
-func reverseStringWithStack(s string) string{
+func reverseStringWithStack(s string) string {
 	stack := NewStackR()
 
 	for _, char := range s {
@@ -407,17 +391,17 @@ type Queue struct {
 
 func NewQueue() *Queue {
 	return &Queue{
-		items: []rune{} ,
+		items: []rune{},
 	}
 	// return &Stack{items: []int{}}
 }
 
-func(q *Queue) Push(value rune){
+func (q *Queue) Push(value rune) {
 	q.items = append(q.items, value)
 }
 
-func(q *Queue) Pop() (rune, error){
-	if q.isEmpty(){
+func (q *Queue) Pop() (rune, error) {
+	if q.isEmpty() {
 		return 0, errors.New("Queue is empty")
 	}
 	data := q.items[len(q.items)-1]
@@ -425,8 +409,8 @@ func(q *Queue) Pop() (rune, error){
 	return data, nil
 }
 
-func(q *Queue) Remove()(rune, error){
-	if q.isEmpty(){
+func (q *Queue) Remove() (rune, error) {
+	if q.isEmpty() {
 		return 0, errors.New("Queue is empty")
 	}
 	data := q.items[0]
@@ -434,7 +418,7 @@ func(q *Queue) Remove()(rune, error){
 	return data, nil
 }
 
-func(q *Queue) isEmpty()bool {
+func (q *Queue) isEmpty() bool {
 	return len(q.items) == 0
 
 }
@@ -443,18 +427,18 @@ func ReverseStackWithQueue(s StackR) {
 	queue := NewQueue()
 	NS := NewStackR()
 
-	for !s.isEmpty(){
+	for !s.isEmpty() {
 		top, _ := s.Pop()
 		queue.Push(top)
 	}
 
-	for !queue.isEmpty(){
+	for !queue.isEmpty() {
 		first, _ := queue.Remove()
 		NS.Push(first)
 	}
 }
 
-func(s *StackR)Size()int{
+func (s *StackR) Size() int {
 	return len(s.items)
 }
 
@@ -482,8 +466,7 @@ func DeleteMiddleElement(stack *Stack) error {
 	return nil
 }
 
-
-func(s *Stack)ReverseWordWithStack(words string) string {
+func (s *Stack) ReverseWordWithStack(words string) string {
 	stack := NewStack()
 
 	for _, char := range words {
@@ -491,7 +474,7 @@ func(s *Stack)ReverseWordWithStack(words string) string {
 	}
 
 	reversed := ""
-	if !stack.IsEmpty(){
+	if !stack.IsEmpty() {
 		char, _ := stack.Pop()
 		reversed += string(rune(char))
 
@@ -500,21 +483,91 @@ func(s *Stack)ReverseWordWithStack(words string) string {
 	return reversed
 }
 
-func (q *Queue) QueueUsing2Stack() *Queue{
+func (q *Queue) QueueUsing2Stack() *Queue {
 	stack1 := NewStackR()
 	stack2 := NewStackR()
 
 	resultQueue := NewQueue()
 
-	if !stack1.isEmpty(){
+	if !stack1.isEmpty() {
 		top, _ := stack1.Pop()
 		resultQueue.Push(top)
 	}
-	if !stack2.isEmpty(){
+	if !stack2.isEmpty() {
 		top, _ := stack2.Pop()
 		resultQueue.Push(top)
 	}
 
 	return resultQueue
-	
+
+}
+
+func StackUsingSingleQueue(q *Queue) *StackR {
+	stack := NewStackR()
+	queue := NewQueue()
+
+	for !queue.isEmpty() {
+		first, _ := queue.Remove()
+		stack.Push(first)
+	}
+
+	return stack
+
+}
+
+func PostfixExpression(v string) (rune, error) {
+	stack := NewStackR()
+	for _, char := range v {
+		if isOperand(char) {
+			operand, err := strconv.Atoi(string(char))
+			if err != nil {
+				return 0, err
+			}
+			stack.items = append(stack.items, rune(operand))
+
+		} else if isOperator(char) {
+			if len(stack.items) < 2 {
+				return 0, fmt.Errorf("insufficient operands for operator %c", char)
+
+			}
+			operand2 := stack.items[len(stack.items)-1]
+			stack.items = stack.items[:len(stack.items)-1]
+
+			operand1 := stack.items[len(stack.items)-1]
+			stack.items = stack.items[:len(stack.items)-1]
+
+			result := performOperation(int(operand1), int(operand2), char)
+			stack.items = append(stack.items, rune(result))
+
+		}
+	}
+	if len(stack.items) != 1 {
+		return 0, fmt.Errorf("invalid postfix expression")
+	}
+
+	return stack.items[0], nil
+
+}
+
+func performOperation(operand1, operand2 int, operator rune) int {
+	switch operator {
+	case '+':
+		return operand1 + operand2
+	case '-':
+		return operand1 - operand2
+	case '*':
+		return operand1 * operand2
+	case '/':
+		return operand1 / operand2
+	default:
+		return 0
+	}
+}
+
+func isOperand(char rune) bool {
+	return char >= '0' && char <= '9'
+}
+
+func isOperator(char rune) bool {
+	return char == '+' || char == '-' || char == '*' || char == '/'
 }
