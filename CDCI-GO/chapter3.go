@@ -453,3 +453,40 @@ func ReverseStackWithQueue(s StackR) {
 		NS.Push(first)
 	}
 }
+
+func(s *StackR)Size()int{
+	return len(s.items)
+}
+
+func DeleteMiddleElement(stack *Stack) error {
+	auxStack := NewStack()
+
+	// Move half of the elements to the auxiliary stack
+	for i := 0; i < stack.Size()/2; i++ {
+		value, err := stack.Pop()
+		if err != nil {
+			return err
+		}
+		auxStack.Push(value)
+	}
+
+	// Remove the middle element from the original stack
+	stack.Pop()
+
+	// Move the elements back to the original stack
+	for !auxStack.IsEmpty() {
+		value, _ := auxStack.Pop()
+		stack.Push(value)
+	}
+
+	return nil
+}
+
+
+func(s *Stack)ReverseWordWithStack(words string) string {
+	stack := NewStack()
+
+	for _, char := range words {
+		stack.Push(int(char))
+	}
+}
