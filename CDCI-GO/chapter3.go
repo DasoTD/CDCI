@@ -583,12 +583,14 @@ func isOperator(char rune) bool {
 // 	return data, nil
 // }
 
-// func (s *StackR) isEmpty() bool {
-// 	return len(s.items) == 0
-// }
+
 
 type StackNGE struct {
 	items map[string]string
+}
+
+func (s *StackNGE) isEmpty() bool {
+	return len(s.items) == 0
 }
 
 func NewStackNGE() *StackNGE {
@@ -599,7 +601,7 @@ func (s *StackNGE) Push( key,value string) {
 	s.items[key] ="=>" + value
 }
 
-func NGE(array []int){ 
+func NGE(array []int) *StackNGE{ 
 	stack := NewStackNGE()
 	lengthMinus2 := len(array)-2
 	var i int
@@ -626,4 +628,59 @@ func NGE(array []int){
 		// }
 	}
 	stack.Push(strconv.Itoa(len(array)-1), strconv.Itoa(-1))
+	return stack
+}
+
+type StackNSE struct {
+	items []string //map[string]string
+}
+
+func (s *StackNSE) isEmpty() bool {
+	return len(s.items) == 0
+}
+
+func NewStackNSE() *StackNSE {
+	return &StackNSE{items: []string{}}
+}
+
+func (s *StackNSE) Push(value string) {
+	s.items = append(s.items, value)
+}
+
+
+
+func NSE(array [] int) *StackNSE{
+	stack := NewStackNSE()
+	var i int
+	for i=0; i<len(array); i++ {
+		fmt.Println("solving for: ", array[i])
+		if stack.isEmpty(){
+			stack.Push("_")
+		}
+		n := i-1
+		for n >=0 {
+			if array[n] < array[i]{
+				stack.Push(strconv.Itoa(array[n]))
+				break
+			}
+			n--
+			if n == 0{
+				stack.Push("_")
+			}
+		}
+
+	}
+	return stack
+}
+
+func main() {
+	array := []int{1, 3, 0, 2, 5}//{4, 5, 2, 10, 8}
+	result := NSE(array)
+	fmt.Println(result)
+
+
+	// Print the result
+	for _, value := range result.items {
+		fmt.Printf("Smallest Element to the Left: %s\n", value)
+	}
 }
