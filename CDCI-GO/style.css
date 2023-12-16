@@ -1,0 +1,169 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    padding: 5vh;
+}
+
+.column-one{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.column-two{
+    height: 100%;
+    width: 50%;
+}
+
+.column-one .left-content{
+    /* border: 2px solid red; */
+    width: 70%;
+}
+
+.column-one .left-content img{
+    /* border: 2px solid red; */
+}
+
+.form-container{
+    box-shadow: 1px 1px 20px 3px #ccc;
+    border-radius: 5px;
+    padding: 4%;
+    width: 80%;
+    height: 90%;
+}
+
+.form-container form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+        /* border: 5px solid red; */
+}
+
+.first, .second, .third{
+    display: flex;
+    justify-content: space-between;
+}
+
+.fname-div, .lname-div, .gender-div, .dob-div, .weight-div, .height-div, .fourth, .al-div, .password-div, .text-at-the-end, .height-div, .button-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.fname-div, .lname-div, .gender-div, .dob-div, .weight-div, .height-div{
+    flex: 1;
+}
+
+.first, .second, .third{
+    gap: 50px
+}
+
+.fourth{
+    justify-content: space-between;
+    /* border: 5px solid blue; */
+    gap: 10px;
+    height: 20rem;
+}
+
+input{
+    border: 1px solid #ccc;
+    padding: 10px 13px;
+    outline-color: #2ec4b6;
+}
+
+select{
+    border: 1px solid #ccc;
+    padding: 8px 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+    outline: none;
+}
+.button{
+    border: none;
+    background-color: #2ec4b6;
+    color: #fff;
+    padding: 12px 13px;
+}
+
+input#password::-ms-reveal,
+input#password::-ms-clear {
+    display: none;
+}
+
+input::placeholder{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+input#dob::-webkit-calendar-picker-indicator{
+    
+}
+
+input#dob::-webkit-datetime-edit-month-field {
+    /* display: none; */
+  }
+input#dob::-webkit-datetime-edit-day-field {
+    /* display: none; */
+  }
+input#dob::-webkit-datetime-edit-year-field {
+    /* display: none; */
+  }
+
+.password-div{
+    position: relative;
+}
+
+.eye-slash{
+    width: 1rem;
+    position: absolute;
+    top: 55%;
+    left: 95%;
+}
+
+.eye-slash:hover{
+    cursor: pointer;
+}
+label{
+    font-weight: 600;
+}
+
+.text-at-the-end-div{
+    font-size: smaller;
+    align-self: center;
+}
+
+.text-at-the-end-div p a{
+    color: #2ec4b6;
+}
+
+@media screen and (max-width: 600px) {
+    .main-container{
+        flex-direction: column;
+        padding: 3vh;
+    }
+    .column-one{
+        width: 100%;
+        align-items: center;
+    }
+    .column-two{
+        height: 100%;
+        width: 100%;
+    }
+    .first, .second , .third{
+        flex-direction: column;
+        gap: 15px;
+    }
+        .form-container {
+            height: 100%;
+        }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;1,100&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+            <div class="main-flex-item column-one">
+                <div class="left-content">
+                    <img src="Group 9.svg" alt="logo" id="logo">
+                    <!-- <h2>For Individual</h2>
+                    <p>Start benefiting from the wellness experience. For companies looking on increasing productivity, and improving organization wellness.</p> -->
+                </div>
+            </div>
+            <div class="main-flex-item column-two">
+                <div class="form-container">
+                    <form>
+                        <div class="first form-div">
+                            <div class="fname-div">
+                                <label for="fname">First Name</label>
+                                <input id="fname" name="fname" type="text"/>
+                            </div>
+                            <div class="lname-div">
+                                <label for="lname">Last Name</label>
+                                <input id="lname" name="lname" type="text"/>
+                            </div>
+                        </div>
+                        <div class="second form-div">
+                                <div class="gender-div">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender">
+                                        <option value="Select Here">Select Here</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="dob-div">
+                                    <label for="dob">Date of Birth</label>
+                                    <input id="dob" name="dob" type="date" placeholder="Select Here" value="AS"/>
+                                </div>
+                        </div>
+                        <div class="third form-div">
+                            <div class="weight-div">
+                                <label for="weight">Weight (KG)</label>
+                                <input id="weight" name="weight" placeholder="Enter Weight" type="text"/>
+                            </div>
+                            <div class="height-div">
+                                <label for="height">Height (CM)</label>
+                                <input id="height" name="height" placeholder="Enter Height" type="text"/>
+                            </div>
+                        </div>
+                        <div class="fourth form-div">
+                            <div class="al-div">
+                                <label for="activity-level">Activity Level</label>
+                                <select name="activity-level" id="activity-level">
+                                    <option value="Select Here">Select Here</option>
+                                    <option value="Proffesional">Proffesional</option>
+                                    <option value="Intemidiate">Intemidiate</option>
+                                    <option value="Amatuer">Amatuer</option>
+                                </select>
+                            </div>
+                            <div class="password-div">
+                                <label for="password">Password</label>
+                                <input id="password" name="password" type="password"/>
+                                <img src="./images/eye-slash.svg" alt="" class="eye-slash" id="eye"/>
+                            </div>
+                            <div class="button-div"><button class="button">Register</button></div>
+                            <div class="text-at-the-end-div">
+                                <p>By clicking Register, you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>

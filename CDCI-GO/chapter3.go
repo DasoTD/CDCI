@@ -183,10 +183,7 @@ func NewStackSort() *StackSort {
 }
 
 func(s *StackSort) IsEmpty() bool{
-	if len(s.items)==0 {
-		return false
-	}
-	return true
+	return len(s.items) == 0
 }
 
 func(s *StackSort) Push(value int) {
@@ -213,11 +210,9 @@ func(s *StackSort) Peek() (int, bool){
 	
 }
 func(s *StackSort) isEmpty() bool{
-	if len(s.items) == 0 {
-		return false
-	}
-	return true
+	return len(s.items) == 0
 }
+
 func(s *StackSort) size() int{
 	return len(s.items)
 }
@@ -332,4 +327,129 @@ func (shelter *AnimalShelter) dequeueDog() Animal {
 }
 
 
+// OTHERS
 
+func isBalancedParentheses(s string) bool {
+	stack := []rune{}
+
+	for _, char := range s {
+		switch char {
+		case '(', '[', '{' :
+			stack = append(stack, char)
+		case ')':
+			if len(stack) == 0 || stack[len(stack)-1] != '(' {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		case ']':
+			if len(stack) == 0 || stack[len(stack)-1] != '[' {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		case '}':
+			if len(stack) == 0 || stack[len(stack)-1] != '{' {
+				return false
+			}
+			stack = stack[:len(stack)-1]
+		}
+	}
+	
+	return len(stack) == 0
+
+}
+
+type StackR struct {
+	items []rune
+}
+
+func NewStackR() *StackR {
+	return &StackR{items: []rune{}}
+}
+
+func(s *StackR) Push(value rune){
+	s.items = append(s.items, value)
+}
+
+func(s *StackR) Pop()(rune, error){
+	if s.isEmpty(){
+		return 0, errors.New("stack is empty")
+	}
+	data := s.items[len(s.items)-1]
+	s.items = s.items[:len(s.items)-1]
+	return data, nil
+}
+
+func(s *StackR)isEmpty()bool {
+	return len(s.items) == 0
+}
+
+func reverseStringWithStack(s string) string{
+	stack := NewStackR()
+
+	for _, char := range s {
+		stack.Push(char)
+	}
+
+	reversed := ""
+	for !stack.isEmpty() {
+		char, _ := stack.Pop()
+		reversed += string(char)
+	}
+
+	return reversed
+}
+
+// Reverse a Stack using Queue
+
+type Queue struct {
+	items []rune
+}
+
+func NewQueue() *Queue {
+	return &Queue{
+		items: []rune{} ,
+	}
+	// return &Stack{items: []int{}}
+}
+
+func(q *Queue) Push(value rune){
+	q.items = append(q.items, value)
+}
+
+func(q *Queue) Pop() (rune, error){
+	if q.isEmpty(){
+		return 0, errors.New("Queue is empty")
+	}
+	data := q.items[len(q.items)-1]
+	q.items = q.items[:len(q.items)-1]
+	return data, nil
+}
+
+func(q *Queue) Remove()(rune, error){
+	if q.isEmpty(){
+		return 0, errors.New("Queue is empty")
+	}
+	data := q.items[0]
+	q.items = q.items[1:]
+	return data, nil
+}
+
+func(q *Queue) isEmpty()bool {
+	return len(q.items) == 0
+
+}
+
+func ReverseStackWithQueue(s StackR) {
+	queue := NewQueue()
+	NS := NewStackR()
+
+	for !s.isEmpty(){
+		top, _ := s.Pop()
+		queue.Push(top)
+	}
+
+	for !queue.isEmpty(){
+		first, _ := queue.Remove()
+		NS.Push(first)
+	}
+}
