@@ -3,7 +3,9 @@ package main
 import (
 	"container/list"
 	"errors"
+	"fmt"
 	_ "fmt"
+	"time"
 )
 
 
@@ -171,6 +173,7 @@ func (s *Stack) Size() int {
 }
 
 
+//STACK sort
 type StackSort struct {
 	items []int
 }
@@ -218,3 +221,115 @@ func(s *StackSort) isEmpty() bool{
 func(s *StackSort) size() int{
 	return len(s.items)
 }
+
+
+func SortStack(stack *StackSort) *StackSort {
+	tempStack := NewStack()
+
+	for !stack.isEmpty() {
+		// Pop the top element from the original stack
+		current, _ := stack.Pop()
+
+		// Move elements from the temporary stack to the original stack
+		for !tempStack.IsEmpty() && current < tempStack.items[len(tempStack.items)-1] {
+			top, _ := tempStack.Pop()
+			stack.Push(top)
+		}
+
+		// Push the current element onto the temporary stack
+		tempStack.Push(current)
+	}
+	// Move sorted elements from the temporary stack to the original stack
+	for !tempStack.IsEmpty() {
+		top, _ := tempStack.Pop()
+		stack.Push(top)
+	}
+
+	return stack
+
+}
+
+
+// ANIMAL SHELTER
+
+type Animal struct {
+	Name string
+	Timestamp time.Time
+}
+
+type AnimalShelter  struct  {
+	dogs *list.List
+	cats *list.List
+}
+
+func NewAnimalShelter()  *AnimalShelter {
+	return &AnimalShelter{
+		dogs: list.New(),
+		cats: list.New(),
+	}
+}
+
+
+func(shelter *AnimalShelter) Enqueue(Name, AnimalType string) {
+	animal := &Animal{
+		Name: Name,
+		Timestamp: time.Now(),
+	}
+	if AnimalType == "dog"{
+		shelter.dogs.PushBack(animal)
+	} else if AnimalType == "cat" {
+		shelter.cats.PushBack(animal)
+	} else {
+		fmt.Println("Invalid animal type.")
+
+	}
+}
+
+func(shelter *AnimalShelter) DequeueAny()(Animal, error){
+	if shelter.cats.Len() == 0 && shelter.dogs.Len() == 0 {
+		return Animal{}, errors.New("shelter is empty")
+	}
+
+	var oldestAnimal Animal
+
+	if shelter.dogs.Len() == 0 {
+		oldestAnimal = shelter.dequeueCat()
+	} else if shelter.cats.Len() == 0 {
+		oldestAnimal = shelter.dequeueDog()
+	} else {
+		oldestDog := shelter.dogs.Front().Value.(Animal)
+		oldestCat := shelter.cats.Front().Value.(Animal)
+
+		if oldestDog.Timestamp.Before(oldestCat.Timestamp) {
+			oldestAnimal = shelter.dequeueDog()
+		} else {
+			oldestAnimal = shelter.dequeueCat()
+		}
+	}
+	return oldestAnimal, nil
+
+}
+
+
+func(shelter *AnimalShelter) dequeueCat() Animal {
+	if shelter.cats.Len() ==0 {
+		return Animal{}
+	}
+	oldestCat := shelter.cats.Front().Value.(Animal)
+	shelter.cats.Remove(shelter.cats.Front())
+	return oldestCat
+}
+
+func (shelter *AnimalShelter) dequeueDog() Animal {
+	if shelter.dogs.Len() == 0 {
+		return Animal{}
+	}
+
+	oldestDog := shelter.dogs.Front().Value.(Animal)
+	shelter.dogs.Remove(shelter.dogs.Front())
+
+	return oldestDog
+}
+
+
+
