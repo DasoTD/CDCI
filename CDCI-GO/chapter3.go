@@ -489,4 +489,32 @@ func(s *Stack)ReverseWordWithStack(words string) string {
 	for _, char := range words {
 		stack.Push(int(char))
 	}
+
+	reversed := ""
+	if !stack.IsEmpty(){
+		char, _ := stack.Pop()
+		reversed += string(rune(char))
+
+	}
+
+	return reversed
+}
+
+func (q *Queue) QueueUsing2Stack() *Queue{
+	stack1 := NewStackR()
+	stack2 := NewStackR()
+
+	resultQueue := NewQueue()
+
+	if !stack1.isEmpty(){
+		top, _ := stack1.Pop()
+		resultQueue.Push(top)
+	}
+	if !stack2.isEmpty(){
+		top, _ := stack2.Pop()
+		resultQueue.Push(top)
+	}
+
+	return resultQueue
+	
 }
