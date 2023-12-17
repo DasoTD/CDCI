@@ -214,7 +214,7 @@ func SortStack(stack *StackSort) *StackSort {
 		current, _ := stack.Pop()
 
 		// Move elements from the temporary stack to the original stack
-		for !tempStack.IsEmpty() && current < tempStack.items[len(tempStack.items)-1] {
+		for !tempStack.IsEmpty() && current > tempStack.items[len(tempStack.items)-1] {
 			top, _ := tempStack.Pop()
 			stack.Push(top)
 		}
@@ -653,7 +653,7 @@ func NSE(array [] int) *StackNSE{
 	stack := NewStackNSE()
 	var i int
 	for i=0; i<len(array); i++ {
-		fmt.Println("solving for: ", array[i])
+		// fmt.Println("solving for: ", array[i])
 		if stack.isEmpty(){
 			stack.Push("_")
 		}
@@ -678,9 +678,73 @@ func main() {
 	result := NSE(array)
 	fmt.Println(result)
 
+	array2 := []int{5, 1, 9, 2, 5, 1, 7}
+	result2 := NSNG(array2)
+	fmt.Println(result2)
+
+	// array3 := []int {34, 3, 31, 98, 92, 23}
+	stack := NewStackSort()
+	stack.Push(34)
+	stack.Push(3)
+	stack.Push(31)
+	stack.Push(98)
+	stack.Push(92)
+	stack.Push(23)
+	result3 := StackSorting(stack)
+	fmt.Println(result3)
+
+
 
 	// Print the result
-	for _, value := range result.items {
-		fmt.Printf("Smallest Element to the Left: %s\n", value)
+	// for _, value := range result.items {
+	// 	fmt.Printf("Smallest Element to the Left: %s\n", value)
+	// }
+}
+
+func NSNG(array []int) *StackNSE{
+	stack1 := NewStackNSE()
+	length := len(array)-2
+	var i int //{5, 1, 9, 2, 5, 1, 7}
+	var seen bool = false
+	for i =1; i<length; i++ {
+		n := i+1
+		for n <= length {
+			if array[n] > array[i] && !seen{
+				seen = true
+				for b:= n; b<length; b++{
+					if array[b] <array[n]{
+						stack1.Push(strconv.Itoa(array[b]))
+						seen = false
+						break
+					}
+				}
+				stack1.Push(strconv.Itoa(-1))
+				seen = false
+			}
+			n = n+1 
+		}
 	}
+	stack1.Push(strconv.Itoa(-1))
+	return stack1
+}
+
+
+
+func StackSorting(stack *StackSort) *StackSort{
+	tempStack := NewStack()
+	for !stack.isEmpty(){
+		current, _ := stack.Pop()
+// func SortStack(stack *StackSort) *StackSort {
+		for !tempStack.IsEmpty() && current > tempStack.items[len(tempStack.items)-1]  {
+			top, _ := tempStack.Pop()
+			stack.Push(top)
+
+		}
+		tempStack.Push(current) // = append(tempStack.items, current)
+	}
+	for !tempStack.IsEmpty() {
+		top, _ := tempStack.Pop()
+		stack.Push(top)
+	}
+	return stack
 }
