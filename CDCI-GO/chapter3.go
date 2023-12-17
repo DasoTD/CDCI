@@ -693,6 +693,10 @@ func main() {
 	result3 := StackSorting(stack)
 	fmt.Println(result3)
 
+	arraySP := []int{100, 80, 60, 70, 60, 75, 85}
+	resultSP := stockSpan(arraySP)
+	fmt.Println(resultSP)
+
 
 
 	// Print the result
@@ -747,4 +751,22 @@ func StackSorting(stack *StackSort) *StackSort{
 		stack.Push(top)
 	}
 	return stack
+}
+
+func stockSpan(SP []int) *StackSort{
+	tempStack := NewStackSort()
+
+	for i :=0; i<len(SP); i++{
+		// fmt.Println("for", SP[i])
+		if tempStack.IsEmpty(){
+			tempStack.Push(1)
+			continue //[100 80 60 70 60 75 85]
+		}
+		if SP[i] > SP[i-1]{
+			tempStack.Push(2)
+		} else {
+			tempStack.Push(1)
+		}
+	}
+	return tempStack //(*StackSort)(tempStack)
 }
