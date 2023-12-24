@@ -673,6 +673,44 @@ func NSE(array [] int) *StackNSE{
 	return stack
 }
 
+func convert(s string, numRows int) string {
+    // Handle special cases where numRows is 1 or numRows is greater than or equal to the length of the string
+    if numRows == 1 || numRows >= len(s) {
+        return s
+    }
+
+    // Create an array of strings to represent each row
+    result := make([]string, numRows)
+    index, step := 0, 1
+
+    // Iterate through the characters in the input string
+    for _, char := range s {
+        // Append the character to the current row
+        result[index] += string(char)
+
+        // Update the direction of movement based on the current row
+        if index == 0 {
+            step = 1
+        } else if index == numRows-1 {
+            step = -1
+        }
+
+        // Move to the next row
+        index += step
+    }
+
+    // Concatenate the rows to form the converted string
+    return join(result)
+}
+
+func join(strs []string) string {
+    result := ""
+    for _, str := range strs {
+        result += str
+    }
+    return result
+}
+
 func main() {
 	array := []int{1, 3, 0, 2, 5}//{4, 5, 2, 10, 8}
 	result := NSE(array)
@@ -698,6 +736,10 @@ func main() {
 	fmt.Println(resultSP)
 
 
+	s := "PAYPALISHIRING"
+    numRows := 4
+    converted := convert(s, numRows)
+    fmt.Println(converted) // Output: "PAHNAPLSIIGYIR"
 
 	// Print the result
 	// for _, value := range result.items {

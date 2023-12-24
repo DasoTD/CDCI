@@ -340,3 +340,56 @@
 // 	fmt.Println("Stock Span for each day:", result)
 // }
 
+package main
+
+import "fmt"
+
+func convert(s string, numRows int) string {
+    // Handle special cases where numRows is 1 or numRows is greater than or equal to the length of the string
+    if numRows == 1 || numRows >= len(s) {
+        return s
+    }
+
+    // Create an array of strings to represent each row
+    result := make([]string, numRows)
+    index, step := 0, 1
+
+    // Iterate through the characters in the input string
+    for _, char := range s {
+        // Append the character to the current row
+		fmt.Println(index, char)
+        result[index] += string(char)
+
+        // Update the direction of movement based on the current row
+        if index == 0 {
+            step = 1
+        } else if index == numRows-1 {
+            step = -1
+        }
+
+        // Move to the next row
+        index += step
+    }
+
+	fmt.Println(result)
+    // Concatenate the rows to form the converted string
+    return join(result)
+}
+
+func join(strs []string) string {
+    result := ""
+    for _, str := range strs {
+        result += str
+    }
+    return result
+}
+
+func main() {
+    s := "PAYPALISHIRING"
+    numRows := 3
+    converted := convert(s, numRows)
+    fmt.Println(converted) // Output: "PAHNAPLSIIGYIR"
+
+    d := "Daso"
+    fmt.Println(string(d[0]), len(d))
+}
