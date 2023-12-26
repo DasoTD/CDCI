@@ -151,6 +151,38 @@ var num2 = []int {2,4,6}
 var num1 = []int {1,2,3}
 var nums = [] int {2, 7, 11, 15}
 var dd = [] int {7,1,5,3,6,4}
+
+
+func insert(intervals [][]int, newInterval []int) [][]int {
+	result := make([][]int, 0)
+	n := len(intervals)
+	i := 0
+
+	for i < n && intervals[i][1] < newInterval[0]{
+		result = append(result, intervals[i])
+		i++
+	}
+	d:= [][]int
+	return d
+}
+
+func max(a,b int) int{
+	if a>b {
+		return a
+	}
+	return b
+}
+
+func min(a,b int) int {
+	if a<b {
+		return a
+	}
+	return b
+}
+
+func isOverlap(a, b []int) bool {
+	return (a[0] <= b[0] && b[0] <= a[1]) || (a[0] <= b[1] && b[1] <= a[1]) || (b[0] <= a[0] && a[0] <= b[1])
+}
 func main (){
 	findDifference(num1, num2)
 	fmt.Print(twoSums(nums, 9))

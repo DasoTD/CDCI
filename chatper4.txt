@@ -62,3 +62,6 @@ A tree is a connected graph without cycles(a tree is a type of graph)
 
 A GRAPH
 A graph is simply a collection of nodes with edges between (some of) them
+GRAPH can either be directed or undirected. while directed edges are like a one-way street , undirected edges are like a two-way street.
+The graph might consists multiple isolated subgraphs.
+The graph can also have cycles(or not). An "acyclic graph" is one without a cycle.
